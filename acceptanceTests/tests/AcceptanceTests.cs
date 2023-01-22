@@ -7,13 +7,13 @@ using Xunit;
 
 namespace acceptanceTests.tests;
 
-public class UnitTest1 : IClassFixture<WebApplicationFactory<ascender.Program>>
+public class AcceptanceTests : IClassFixture<WebApplicationFactory<ascender.Program>>
 {
     
     private readonly WebApplicationFactory<ascender.Program> _factory;
     
 
-    public UnitTest1(WebApplicationFactory<ascender.Program> factory)
+    public AcceptanceTests(WebApplicationFactory<ascender.Program> factory)
     {
         _factory = factory;
     }
