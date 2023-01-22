@@ -11,7 +11,6 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<IMetricRepository, InMemoryMetricRepository>();
-
 builder.Services.AddSingleton<ITimeProvider, FakeTimeProvider>();
 
 var app = builder.Build();
