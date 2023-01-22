@@ -1,5 +1,5 @@
 using System.Threading.Tasks;
-using acceptanceTests.driver;
+using acceptanceTests.drivers;
 using ascender.Dto;
 using ascender.Enum;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -47,6 +47,7 @@ public class AcceptanceTests : IClassFixture<WebApplicationFactory<ascender.Prog
         // Arrange
         var client = _factory.CreateClient();
         var driver = new MetricsDriver(client);
+        var time = new TimeDriver(client);
 
         var metricName = "test2";
         
@@ -58,7 +59,7 @@ public class AcceptanceTests : IClassFixture<WebApplicationFactory<ascender.Prog
         };
         
         await driver.CreateMetric(dto);
-        await driver.AddDays(10);
+        await time.AddDays(10);
         
         await driver.CommitEntry(metricName, 5);
         var result = await driver.ValidateEntry(metricName, 3);
@@ -72,6 +73,7 @@ public class AcceptanceTests : IClassFixture<WebApplicationFactory<ascender.Prog
         // Arrange
         var client = _factory.CreateClient();
         var driver = new MetricsDriver(client);
+        var time = new TimeDriver(client);
 
         var metricName = "test3";
         
@@ -85,12 +87,12 @@ public class AcceptanceTests : IClassFixture<WebApplicationFactory<ascender.Prog
         await driver.CreateMetric(dto);
         await driver.CommitEntry(metricName, 5);
         
-        await driver.AddDays(3);
+        await time.AddDays(3);
         var result1 = await driver.ValidateEntry(metricName, 10);
         Assert.True(result1);
         await driver.CommitEntry(metricName, 10);
         
-        await driver.AddDays(3);
+        await time.AddDays(3);
         var result = await driver.ValidateEntry(metricName, 7);
         Assert.True(result);
     }

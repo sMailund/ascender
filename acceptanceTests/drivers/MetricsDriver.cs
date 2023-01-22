@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using ascender.Dto;
 using Newtonsoft.Json;
 
-namespace acceptanceTests.driver;
+namespace acceptanceTests.drivers;
 
 public class MetricsDriver
 {
@@ -61,9 +61,4 @@ public class MetricsDriver
         return result.Equals("true");
     }
     
-    public async Task AddDays(int days)
-    {
-        var response = await _client.PostAsync($"/Debug/addDays/{days}", new StringContent("")); 
-        response.EnsureSuccessStatusCode(); 
-    }
 }
