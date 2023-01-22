@@ -6,12 +6,12 @@ using Newtonsoft.Json;
 
 namespace acceptanceTests.driver;
 
-public class HttpDriver
+public class MetricsDriver
 {
 
     private readonly HttpClient _client;
 
-    public HttpDriver(HttpClient client)
+    public MetricsDriver(HttpClient client)
     {
         _client = client;
     }

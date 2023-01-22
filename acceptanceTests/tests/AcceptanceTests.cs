@@ -23,7 +23,7 @@ public class AcceptanceTests : IClassFixture<WebApplicationFactory<ascender.Prog
     {
         // Arrange
         var client = _factory.CreateClient();
-        var driver = new HttpDriver(client);
+        var driver = new MetricsDriver(client);
 
         var metricName = "test";
         
@@ -46,7 +46,7 @@ public class AcceptanceTests : IClassFixture<WebApplicationFactory<ascender.Prog
     {
         // Arrange
         var client = _factory.CreateClient();
-        var driver = new HttpDriver(client);
+        var driver = new MetricsDriver(client);
 
         var metricName = "test2";
         
@@ -71,7 +71,7 @@ public class AcceptanceTests : IClassFixture<WebApplicationFactory<ascender.Prog
     {
         // Arrange
         var client = _factory.CreateClient();
-        var driver = new HttpDriver(client);
+        var driver = new MetricsDriver(client);
 
         var metricName = "test3";
         
