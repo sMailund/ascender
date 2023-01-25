@@ -30,7 +30,8 @@ public class AcceptanceTests : IClassFixture<WebApplicationFactory<ascender.Prog
         {
             Name = metricName,
             Type = MetricType.Number,
-            Direction = Direction.Increase
+            Direction = Direction.Increase,
+            EvaluationWindow = 10
         };
         
         await metrics.CreateMetric(dto);
@@ -53,7 +54,8 @@ public class AcceptanceTests : IClassFixture<WebApplicationFactory<ascender.Prog
         {
             Name = metricName,
             Type = MetricType.Number,
-            Direction = Direction.Increase
+            Direction = Direction.Increase,
+            EvaluationWindow = 10
         };
         
         await metrics.CreateMetric(dto);
@@ -78,7 +80,8 @@ public class AcceptanceTests : IClassFixture<WebApplicationFactory<ascender.Prog
         {
             Name = metricName,
             Type = MetricType.Number,
-            Direction = Direction.Increase
+            Direction = Direction.Increase,
+            EvaluationWindow = 10
         };
         
         await metrics.CreateMetric(dto);
@@ -107,7 +110,8 @@ public class AcceptanceTests : IClassFixture<WebApplicationFactory<ascender.Prog
         {
             Name = metricName,
             Type = MetricType.Number,
-            Direction = Direction.Increase
+            Direction = Direction.Increase,
+            EvaluationWindow = 10
         };
         
         await metrics.CreateMetric(dto);
