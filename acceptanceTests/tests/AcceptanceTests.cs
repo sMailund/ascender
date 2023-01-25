@@ -11,7 +11,6 @@ public class AcceptanceTests : IClassFixture<WebApplicationFactory<ascender.Prog
 {
     
     private readonly WebApplicationFactory<ascender.Program> _factory;
-    
 
     public AcceptanceTests(WebApplicationFactory<ascender.Program> factory)
     {

@@ -18,7 +18,7 @@ class InMemoryMetricRepository : IMetricRepository
         _metrics.Add(dto.Name, dto);
     }
 
-    public void MetricCommitted(string name, int value)
+    public void MetricCommitted(string name, decimal value)
     {
         var entry = new MetricEntry
         {
@@ -33,7 +33,7 @@ class InMemoryMetricRepository : IMetricRepository
         _entries[name] = newList;;
     }
 
-    public int GetCutoff(string name)
+    public decimal GetCutoff(string name)
     {
         var metric = _metrics[name];
         var metrics = _entries[name];
