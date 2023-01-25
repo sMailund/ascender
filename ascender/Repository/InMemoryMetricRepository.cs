@@ -1,10 +1,12 @@
+using ascender.Dto;
 using ascender.Providers;
 
 namespace ascender.Repository;
 
 class InMemoryMetricRepository : IMetricRepository
 {
-    private readonly Dictionary<string, List<MetricEntry>> _metrics = new();
+    private readonly Dictionary<string, List<MetricEntry>> _entries = new();
+    private readonly Dictionary<string, CreateMetricDto> _metrics = new();
     private ITimeProvider _time;
 
     public InMemoryMetricRepository(ITimeProvider time)
@@ -12,14 +14,15 @@ class InMemoryMetricRepository : IMetricRepository
         _time = time;
     }
 
-    public void CreateMetric(string name)
+    public void CreateMetric(CreateMetricDto dto)
     {
         var entry = new MetricEntry
         {
             Value = 0,
             Time = _time.Now()
         };
-        _metrics.Add(name, new List<MetricEntry> {entry});
+        _entries.Add(dto.Name, new List<MetricEntry> {entry});
+        _metrics.Add(dto.Name, dto);
     }
 
     public void MetricCommitted(string name, int value, DateTime time)
@@ -30,22 +33,20 @@ class InMemoryMetricRepository : IMetricRepository
             Time = time
         };
 
-        var metricEntries = _metrics[name];
+        var metricEntries = _entries[name];
         var newList = new List<MetricEntry>();
         newList.AddRange(metricEntries);
         newList.Add(entry);
-        _metrics[name] = newList;;
+        _entries[name] = newList;;
     }
 
     public int GetCutoff(string name)
     {
-        var metrics = _metrics[name];
-        var lastSevenDays = metrics
-            .Where(it => it.Time > _time.Now().AddDays(-7))
-            .GroupBy(it => it.Time.Date, it => it.Value)
-            .Select(it => it.Min())
-            .ToList();
-
-        return lastSevenDays.Count() == 0 ? metrics.Last().Value : lastSevenDays.Min();
+        var metric = _metrics[name];
+        var metrics = _entries[name];
+        return metrics
+            .TakeLast(metric.EvaluationWindow)
+            .Select(it => it.Value)
+            .Min();
     }
 }

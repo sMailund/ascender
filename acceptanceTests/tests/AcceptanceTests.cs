@@ -55,7 +55,7 @@ public class AcceptanceTests : IClassFixture<WebApplicationFactory<ascender.Prog
             Name = metricName,
             Type = MetricType.Number,
             Direction = Direction.Increase,
-            EvaluationWindow = 10
+            EvaluationWindow = 1
         };
         
         await metrics.CreateMetric(dto);
@@ -98,11 +98,10 @@ public class AcceptanceTests : IClassFixture<WebApplicationFactory<ascender.Prog
     }
     
     [Fact]
-    public async Task ShouldAcceptMultipleEntriesInOneDayAndSetCutoffToLowest()
+    public async Task ShouldSetCutoffToLowestValueInWindow()
     {
         var client = _factory.CreateClient();
         var metrics = new MetricsDriver(client);
-        var time = new TimeDriver(client);
 
         var metricName = "test4";
         
@@ -111,24 +110,20 @@ public class AcceptanceTests : IClassFixture<WebApplicationFactory<ascender.Prog
             Name = metricName,
             Type = MetricType.Number,
             Direction = Direction.Increase,
-            EvaluationWindow = 10
+            EvaluationWindow = 3
         };
         
         await metrics.CreateMetric(dto);
-        await metrics.CommitEntry(metricName, 1);
-        await time.AddDays(10);
-        
         await metrics.CommitEntry(metricName, 5);
-        await metrics.CommitEntry(metricName, 3);
-        await metrics.CommitEntry(metricName, 3);
-        await metrics.CommitEntry(metricName, 6);
-        await metrics.CommitEntry(metricName, 4);
         
-        await time.AddDays(1);
-        var result1 = await metrics.ValidateEntry(metricName, 3);
+        await metrics.CommitEntry(metricName, 10);
+        await metrics.CommitEntry(metricName, 15);
+        await metrics.CommitEntry(metricName, 12);
+        
+        var result1 = await metrics.ValidateEntry(metricName, 10);
         Assert.True(result1);
         
-        var result = await metrics.ValidateEntry(metricName, 2);
+        var result = await metrics.ValidateEntry(metricName, 9);
         Assert.False(result);
     }
     

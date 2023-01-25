@@ -21,7 +21,7 @@ public class MetricController : ControllerBase
     [HttpPost]
     public string Post([FromBody] CreateMetricDto dto)
     {
-        _repo.CreateMetric(dto.Name);
+        _repo.CreateMetric(dto);
         return dto.Name;
     }
 
