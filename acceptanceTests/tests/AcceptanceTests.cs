@@ -29,7 +29,6 @@ public class AcceptanceTests : IClassFixture<WebApplicationFactory<ascender.Prog
         var dto = new CreateMetricDto()
         {
             Name = metricName,
-            Type = MetricType.Number,
             Direction = Direction.Increase,
             Window = 10
         };
@@ -52,7 +51,6 @@ public class AcceptanceTests : IClassFixture<WebApplicationFactory<ascender.Prog
         var dto = new CreateMetricDto()
         {
             Name = metricName,
-            Type = MetricType.Number,
             Direction = Direction.Increase,
             Window = 1
         };
@@ -76,7 +74,6 @@ public class AcceptanceTests : IClassFixture<WebApplicationFactory<ascender.Prog
         var dto = new CreateMetricDto
         {
             Name = metricName,
-            Type = MetricType.Number,
             Direction = Direction.Increase,
             Window = 10
         };
@@ -103,7 +100,6 @@ public class AcceptanceTests : IClassFixture<WebApplicationFactory<ascender.Prog
         var dto = new CreateMetricDto
         {
             Name = metricName,
-            Type = MetricType.Number,
             Direction = Direction.Increase,
             Window = 3
         };
@@ -133,7 +129,6 @@ public class AcceptanceTests : IClassFixture<WebApplicationFactory<ascender.Prog
         var dto = new CreateMetricDto
         {
             Name = metricName,
-            Type = MetricType.Number,
             Direction = Direction.Increase,
             Window = 3
         };
