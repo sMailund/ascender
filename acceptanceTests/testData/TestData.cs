@@ -4,7 +4,7 @@ using ascender.Enum;
 
 namespace acceptanceTests.testData;
 
-public class TestData
+public static class TestData
 {
     private static readonly Random Random = new();
 

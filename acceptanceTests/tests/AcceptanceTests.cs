@@ -4,6 +4,7 @@ using ascender.Dto;
 using ascender.Enum;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Xunit;
+using static acceptanceTests.testData.TestData;
 
 namespace acceptanceTests.tests;
 
@@ -23,7 +24,7 @@ public class AcceptanceTests : IClassFixture<WebApplicationFactory<ascender.Prog
         var client = _factory.CreateClient();
         var metrics = new MetricsDriver(client);
 
-        var metricName = "test";
+        var metricName = AMetricName(Direction.Increase);
         
         var dto = new CreateMetricDto()
         {
@@ -46,7 +47,7 @@ public class AcceptanceTests : IClassFixture<WebApplicationFactory<ascender.Prog
         var client = _factory.CreateClient();
         var metrics = new MetricsDriver(client);
 
-        var metricName = "test2";
+        var metricName = AMetricName(Direction.Increase);
         
         var dto = new CreateMetricDto()
         {
@@ -70,9 +71,9 @@ public class AcceptanceTests : IClassFixture<WebApplicationFactory<ascender.Prog
         var client = _factory.CreateClient();
         var metrics = new MetricsDriver(client);
 
-        var metricName = "test3";
+        var metricName = AMetricName(Direction.Increase);
         
-        var dto = new CreateMetricDto()
+        var dto = new CreateMetricDto
         {
             Name = metricName,
             Type = MetricType.Number,
@@ -97,9 +98,9 @@ public class AcceptanceTests : IClassFixture<WebApplicationFactory<ascender.Prog
         var client = _factory.CreateClient();
         var metrics = new MetricsDriver(client);
 
-        var metricName = "test4";
+        var metricName = AMetricName(Direction.Increase);
         
-        var dto = new CreateMetricDto()
+        var dto = new CreateMetricDto
         {
             Name = metricName,
             Type = MetricType.Number,
@@ -127,9 +128,9 @@ public class AcceptanceTests : IClassFixture<WebApplicationFactory<ascender.Prog
         var client = _factory.CreateClient();
         var metrics = new MetricsDriver(client);
 
-        var metricName = "test4";
+        var metricName = AMetricName(Direction.Increase);
         
-        var dto = new CreateMetricDto()
+        var dto = new CreateMetricDto
         {
             Name = metricName,
             Type = MetricType.Number,
