@@ -26,7 +26,7 @@ public class MetricsDriver
         response.EnsureSuccessStatusCode(); 
     }
 
-    public async Task CommitEntry(string metricName, int value)
+    public async Task CommitEntry(string metricName, decimal value)
     {
         var dto = new EntryDto
         {
@@ -42,7 +42,7 @@ public class MetricsDriver
         response.EnsureSuccessStatusCode(); 
     }
 
-    public async Task<bool> ValidateEntry(string metricName, int value)
+    public async Task<bool> ValidateEntry(string metricName, decimal value)
     {
         var dto = new EntryDto
         {

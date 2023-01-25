@@ -120,5 +120,35 @@ public class AcceptanceTests : IClassFixture<WebApplicationFactory<ascender.Prog
         var result = await metrics.ValidateEntry(metricName, 9);
         Assert.False(result);
     }
-    
+
+    [Fact]
+    public async Task ShouldHandleMetricsWithDecimalPoints()
+    {
+        var client = _factory.CreateClient();
+        var metrics = new MetricsDriver(client);
+
+        var metricName = "test4";
+        
+        var dto = new CreateMetricDto()
+        {
+            Name = metricName,
+            Type = MetricType.Number,
+            Direction = Direction.Increase,
+            Window = 3
+        };
+        
+        await metrics.CreateMetric(dto);
+        await metrics.CommitEntry(metricName, 10.05m);
+        
+        await metrics.CommitEntry(metricName, 10.10m);
+        await metrics.CommitEntry(metricName, 10.15m);
+        await metrics.CommitEntry(metricName, 10.12m);
+        
+        var result1 = await metrics.ValidateEntry(metricName, 10.10m);
+        Assert.True(result1);
+        
+        var result = await metrics.ValidateEntry(metricName, 10.09m);
+        Assert.False(result);
+    }
+
 }
