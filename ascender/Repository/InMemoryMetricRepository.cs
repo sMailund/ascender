@@ -1,5 +1,4 @@
 using ascender.Dto;
-using ascender.Providers;
 
 namespace ascender.Repository;
 
@@ -7,19 +6,13 @@ class InMemoryMetricRepository : IMetricRepository
 {
     private readonly Dictionary<string, List<MetricEntry>> _entries = new();
     private readonly Dictionary<string, CreateMetricDto> _metrics = new();
-    private ITimeProvider _time;
-
-    public InMemoryMetricRepository(ITimeProvider time)
-    {
-        _time = time;
-    }
 
     public void CreateMetric(CreateMetricDto dto)
     {
         var entry = new MetricEntry
         {
             Value = 0,
-            Time = _time.Now()
+            Time = DateTime.Now
         };
         _entries.Add(dto.Name, new List<MetricEntry> {entry});
         _metrics.Add(dto.Name, dto);
