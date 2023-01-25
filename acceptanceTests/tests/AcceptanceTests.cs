@@ -46,7 +46,6 @@ public class AcceptanceTests : IClassFixture<WebApplicationFactory<ascender.Prog
     {
         var client = _factory.CreateClient();
         var metrics = new MetricsDriver(client);
-        var time = new TimeDriver(client);
 
         var metricName = "test2";
         
@@ -59,7 +58,6 @@ public class AcceptanceTests : IClassFixture<WebApplicationFactory<ascender.Prog
         };
         
         await metrics.CreateMetric(dto);
-        await time.AddDays(10);
         
         await metrics.CommitEntry(metricName, 5);
         var result = await metrics.ValidateEntry(metricName, 3);
@@ -72,7 +70,6 @@ public class AcceptanceTests : IClassFixture<WebApplicationFactory<ascender.Prog
     {
         var client = _factory.CreateClient();
         var metrics = new MetricsDriver(client);
-        var time = new TimeDriver(client);
 
         var metricName = "test3";
         
@@ -87,12 +84,10 @@ public class AcceptanceTests : IClassFixture<WebApplicationFactory<ascender.Prog
         await metrics.CreateMetric(dto);
         await metrics.CommitEntry(metricName, 5);
         
-        await time.AddDays(3);
         var result1 = await metrics.ValidateEntry(metricName, 10);
         Assert.True(result1);
         await metrics.CommitEntry(metricName, 10);
         
-        await time.AddDays(3);
         var result = await metrics.ValidateEntry(metricName, 7);
         Assert.True(result);
     }
