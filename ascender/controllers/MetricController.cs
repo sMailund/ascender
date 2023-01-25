@@ -33,7 +33,7 @@ public class MetricController : ControllerBase
         {
             BadRequest();
         }
-        _repo.MetricCommitted(metricName, dto.Value, _time.Now());
+        _repo.MetricCommitted(metricName, dto.Value);
     }
     
     [HttpPost]

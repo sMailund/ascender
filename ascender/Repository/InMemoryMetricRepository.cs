@@ -18,12 +18,12 @@ class InMemoryMetricRepository : IMetricRepository
         _metrics.Add(dto.Name, dto);
     }
 
-    public void MetricCommitted(string name, int value, DateTime time)
+    public void MetricCommitted(string name, int value)
     {
         var entry = new MetricEntry
         {
             Value = value,
-            Time = time
+            Time = DateTime.Now
         };
 
         var metricEntries = _entries[name];
