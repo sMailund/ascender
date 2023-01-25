@@ -1,5 +1,4 @@
 using ascender.Dto;
-using ascender.Providers;
 using ascender.Repository;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,12 +9,10 @@ namespace ascender.controllers;
 public class MetricController : ControllerBase
 {
     private readonly IMetricRepository _repo;
-    private readonly ITimeProvider _time;
 
-    public MetricController(IMetricRepository repo, ITimeProvider time)
+    public MetricController(IMetricRepository repo)
     {
         _repo = repo;
-        _time = time;
     }
 
     [HttpPost]
