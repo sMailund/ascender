@@ -21,7 +21,6 @@ public class AcceptanceTests : IClassFixture<WebApplicationFactory<ascender.Prog
     [Fact]
     public async Task CommitAndValidate()
     {
-        // Arrange
         var client = _factory.CreateClient();
         var metrics = new MetricsDriver(client);
 
@@ -44,7 +43,6 @@ public class AcceptanceTests : IClassFixture<WebApplicationFactory<ascender.Prog
     [Fact]
     public async Task RejectLowerValue()
     {
-        // Arrange
         var client = _factory.CreateClient();
         var metrics = new MetricsDriver(client);
         var time = new TimeDriver(client);
@@ -70,7 +68,6 @@ public class AcceptanceTests : IClassFixture<WebApplicationFactory<ascender.Prog
     [Fact]
     public async Task AcceptLowerThanPreviousHigherThanCutoff()
     {
-        // Arrange
         var client = _factory.CreateClient();
         var metrics = new MetricsDriver(client);
         var time = new TimeDriver(client);
