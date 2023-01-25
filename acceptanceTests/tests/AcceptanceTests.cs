@@ -94,4 +94,38 @@ public class AcceptanceTests : IClassFixture<WebApplicationFactory<ascender.Prog
         Assert.True(result);
     }
     
+    [Fact]
+    public async Task ShouldAcceptMultipleEntriesInOneDayAndSetCutoffToLowest()
+    {
+        var client = _factory.CreateClient();
+        var metrics = new MetricsDriver(client);
+        var time = new TimeDriver(client);
+
+        var metricName = "test4";
+        
+        var dto = new CreateMetricDto()
+        {
+            Name = metricName,
+            Type = MetricType.Number,
+            Direction = Direction.Increase
+        };
+        
+        await metrics.CreateMetric(dto);
+        await metrics.CommitEntry(metricName, 1);
+        await time.AddDays(10);
+        
+        await metrics.CommitEntry(metricName, 5);
+        await metrics.CommitEntry(metricName, 3);
+        await metrics.CommitEntry(metricName, 3);
+        await metrics.CommitEntry(metricName, 6);
+        await metrics.CommitEntry(metricName, 4);
+        
+        await time.AddDays(1);
+        var result1 = await metrics.ValidateEntry(metricName, 3);
+        Assert.True(result1);
+        
+        var result = await metrics.ValidateEntry(metricName, 2);
+        Assert.False(result);
+    }
+    
 }

@@ -42,7 +42,8 @@ class InMemoryMetricRepository : IMetricRepository
         var metrics = _metrics[name];
         var lastSevenDays = metrics
             .Where(it => it.Time > _time.Now().AddDays(-7))
-            .Select(it => it.Value)
+            .GroupBy(it => it.Time.Date, it => it.Value)
+            .Select(it => it.Min())
             .ToList();
 
         return lastSevenDays.Count() == 0 ? metrics.Last().Value : lastSevenDays.Min();

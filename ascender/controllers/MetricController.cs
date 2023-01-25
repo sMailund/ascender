@@ -41,6 +41,6 @@ public class MetricController : ControllerBase
     public bool Validate(string metricName, [FromBody] EntryDto dto) // TODO useless dto
     {
         var value = _repo.GetCutoff(metricName);
-        return value < dto.Value;
+        return value <= dto.Value;
     }
 }
