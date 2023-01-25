@@ -38,7 +38,7 @@ class InMemoryMetricRepository : IMetricRepository
         var metric = _metrics[name];
         var metrics = _entries[name];
         return metrics
-            .TakeLast(metric.EvaluationWindow)
+            .TakeLast(metric.Window)
             .Select(it => it.Value)
             .Min();
     }

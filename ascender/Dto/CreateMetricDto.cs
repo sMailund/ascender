@@ -7,5 +7,5 @@ public class CreateMetricDto
     public string Name { get; init; }
     public MetricType Type { get; init; }
     public Direction Direction { get; init; }
-    public int EvaluationWindow { get; init; }
+    public int Window { get; init; }
 }
