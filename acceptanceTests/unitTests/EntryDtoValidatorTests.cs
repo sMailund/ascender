@@ -57,4 +57,16 @@ public class EntryDtoValidatorTests
         
         Assert.True(_validator.Validate(dto));
     }
+    
+    [Fact]
+    public void ShouldRejectDtoWithThreeDecimals()
+    {
+        var dto = new EntryDto
+        {
+            Name = AMetricName(Direction.Increase),
+            Value = 1.222m
+        };
+        
+        Assert.False(_validator.Validate(dto));
+    }
 }

@@ -6,6 +6,7 @@ public class EntryDtoValidator
 {
     public bool Validate(EntryDto dto)
     {
-        return true;
+        var value = dto.Value.ToString();
+        return value.Substring(value.IndexOf(".") + 1).Length <= 2;
     }
 }
