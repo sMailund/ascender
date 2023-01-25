@@ -2,7 +2,7 @@ using ascender.Dto;
 using ascender.Validators;
 using Xunit;
 
-namespace UnitTests.Validators;
+namespace acceptanceTests.unitTests;
 
 public class CreateMetricValidatorTests
 {
@@ -13,7 +13,6 @@ public class CreateMetricValidatorTests
     {
         var dto = new CreateMetricDto
         {
-            Name = 
-        }
+        };
     }
 }

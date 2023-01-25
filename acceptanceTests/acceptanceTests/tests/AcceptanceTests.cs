@@ -1,12 +1,12 @@
 using System.Threading.Tasks;
-using acceptanceTests.drivers;
+using acceptanceTests.acceptanceTests.drivers;
 using ascender.Dto;
 using ascender.Enum;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Xunit;
 using static acceptanceTests.testData.TestData;
 
-namespace acceptanceTests.tests;
+namespace acceptanceTests.acceptanceTests.tests;
 
 public class AcceptanceTests : IClassFixture<WebApplicationFactory<ascender.Program>>
 {
