@@ -1,5 +1,3 @@
-using ascender.Enum;
-
 namespace ascender.DomainObjects;
 
 public abstract class Metric
@@ -7,14 +5,12 @@ public abstract class Metric
     public string Name { get; }
     public  decimal Cutoff { get; set; }
     public decimal? Max { get; }
-    public Direction Direction { get; }
     public int Window { get; }
 
-    public Metric(string name, decimal? max, Direction direction, int window)
+    public Metric(string name, decimal? max, int window)
     {
         Name = name;
         Max = max;
-        Direction = direction;
         Window = window;
     }
     
