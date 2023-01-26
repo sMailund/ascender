@@ -21,9 +21,12 @@ public abstract class Metric
     public bool Validate(decimal newValue)
     {
         var withInRange = !Max.HasValue || newValue <= Max;
-        
-        var betterThanCutoff = Direction == Direction.Increase ? Cutoff <= newValue : Cutoff >= newValue;
+
+        var betterThanCutoff = IsBetterThanCutoff(newValue);
 
         return betterThanCutoff && withInRange;
     }
+
+    protected abstract bool IsBetterThanCutoff(decimal newValue);
+
 }
