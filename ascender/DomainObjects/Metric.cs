@@ -3,7 +3,7 @@ namespace ascender.DomainObjects;
 public abstract class Metric
 {
     public string Name { get; set;  }
-    public  decimal Cutoff { get; set; }
+    public decimal Cutoff { get; set; }
     public decimal? Max { get; set;  }
     public int Window { get; set;  }
 
