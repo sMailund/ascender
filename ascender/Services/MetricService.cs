@@ -13,12 +13,8 @@ public class MetricService
         _repo = repo;
     }
 
-    public void CreateNewMetric(Metric metric)
-    {
-        
-        _repo.CreateMetric(metric);
-    }
-    
+    public void CreateNewMetric(Metric metric) => _repo.CreateMetric(metric);
+
     public bool Validate(string metricName, decimal value)
     {
         var metric = _repo.GetMetric(metricName);
