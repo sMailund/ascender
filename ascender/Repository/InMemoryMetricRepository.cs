@@ -1,3 +1,4 @@
+using ascender.DomainObjects;
 using ascender.Dto;
 
 namespace ascender.Repository;
@@ -43,5 +44,10 @@ class InMemoryMetricRepository : IMetricRepository
             .Min();
     }
 
-    public CreateMetricDto GetMetric(string name) => _metrics[name];
+    public Metric GetMetric(string name)
+    {
+        var createMetricDto = _metrics[name];
+        var metric = new Metric(createMetricDto.Name, GetCutoff(name), createMetricDto.Max, createMetricDto.Direction);
+        return metric;
+    }
 }

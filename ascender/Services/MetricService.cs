@@ -24,9 +24,9 @@ public class MetricService
         var metric = _repo.GetMetric(metricName);
         var value = _repo.GetCutoff(metricName);
         
-        var max = metric.Max;
+        var max = metric._max;
         var withInRange = !max.HasValue || dto.Value <= max;
-        var betterThanCutoff = metric.Direction == Direction.Increase ? value <= dto.Value : value >= dto.Value;
+        var betterThanCutoff = metric._direction == Direction.Increase ? value <= dto.Value : value >= dto.Value;
 
         return betterThanCutoff && withInRange;
     }
