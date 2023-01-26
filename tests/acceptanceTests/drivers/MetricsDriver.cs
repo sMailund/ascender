@@ -21,7 +21,7 @@ public class MetricsDriver
         var myContent = JsonConvert.SerializeObject(dto);
         var stringContent = new StringContent(myContent, Encoding.UTF8, "application/json"); 
 
-        var response = await _client.PostAsync("/Metric", stringContent); 
+        var response = await _client.PostAsync("api/v1/Metric", stringContent); 
         
         response.EnsureSuccessStatusCode(); 
     }
@@ -38,7 +38,7 @@ public class MetricsDriver
         
         var stringContent = new StringContent(myContent, Encoding.UTF8, "application/json"); 
         
-        var response = await _client.PostAsync($"/Metric/{metricName}/commit", stringContent); 
+        var response = await _client.PostAsync($"api/v1/Metric/{metricName}/commit", stringContent); 
         response.EnsureSuccessStatusCode(); 
     }
 
@@ -54,7 +54,7 @@ public class MetricsDriver
         
         var stringContent = new StringContent(myContent, Encoding.UTF8, "application/json"); 
         
-        var response = await _client.PostAsync($"/Metric/{metricName}/validate", stringContent); 
+        var response = await _client.PostAsync($"api/v1/Metric/{metricName}/validate", stringContent); 
         response.EnsureSuccessStatusCode();
 
         var result = await response.Content.ReadAsStringAsync();

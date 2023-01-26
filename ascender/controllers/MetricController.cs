@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace ascender.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/v1/[controller]")]
 public class MetricController : ControllerBase
 {
     private readonly MetricService _metricService;
@@ -24,7 +24,7 @@ public class MetricController : ControllerBase
 
     [HttpPost]
     [Route("{metricName}/commit")]
-    public void Commit(string metricName, [FromBody] EntryDto dto) // TODO useless dto
+    public void Commit(string metricName, [FromBody] EntryDto dto) 
     {
         try
         {
@@ -38,7 +38,7 @@ public class MetricController : ControllerBase
     
     [HttpPost]
     [Route("{metricName}/validate")]
-    public bool Validate(string metricName, [FromBody] EntryDto dto) // TODO useless dto
+    public bool Validate(string metricName, [FromBody] EntryDto dto) 
     {
         return _metricService.Validate(metricName, dto);
     }
