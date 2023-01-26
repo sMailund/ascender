@@ -19,7 +19,7 @@ public class MetricService
         _repo.CreateMetric(dto);
     }
     
-    public bool Validate(string metricName, EntryDto dto) // TODO useless dto
+    public bool Validate(string metricName, EntryDto dto)
     {
         var metric = _repo.GetMetric(metricName);
         var value = _repo.GetCutoff(metricName);
@@ -31,7 +31,7 @@ public class MetricService
         return betterThanCutoff && withInRange;
     }
     
-    public void Commit(string metricName, EntryDto dto) // TODO useless dto
+    public void Commit(string metricName, EntryDto dto) 
     {
         if (!Validate(metricName, dto))
         {
