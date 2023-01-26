@@ -1,5 +1,4 @@
 using System.Transactions;
-using ascender.Enum;
 
 namespace ascender.DomainObjects;
 
@@ -9,7 +8,7 @@ public class IncreasingMetric : Metric
     {
         
     }
-    public IncreasingMetric(string name, decimal? max, Direction direction, int window) : base(name, max, window)
+    public IncreasingMetric(string name, decimal? max, int window) : base(name, max, window)
     {
     }
     

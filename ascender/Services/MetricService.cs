@@ -18,8 +18,8 @@ public class MetricService
     public void CreateNewMetric(CreateMetricDto dto)
     {
         Metric metric = dto.Direction == Direction.Increase
-            ? new IncreasingMetric(dto.Name, dto.Max, dto.Direction, dto.Window)
-            : new DecreasingMetric(dto.Name, dto.Max, dto.Direction, dto.Window);
+            ? new IncreasingMetric(dto.Name, dto.Max, dto.Window)
+            : new DecreasingMetric(dto.Name, dto.Max, dto.Window);
         
         _repo.CreateMetric(metric);
     }
