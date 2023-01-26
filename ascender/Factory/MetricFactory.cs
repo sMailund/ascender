@@ -28,7 +28,7 @@ public class MetricFactory
     
     public MetricFactory WithMin(decimal? value)
     {
-        _metric.Minumum = value;
+        _metric.Minimum = value;
         return this;
     }
 
