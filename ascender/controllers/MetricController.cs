@@ -16,7 +16,7 @@ public class MetricController : ControllerBase
     public MetricController(IMetricRepository repo, MetricService metricService)
     {
         _repo = repo;
-        this._metricService = metricService;
+        _metricService = metricService;
     }
 
     [HttpPost]
