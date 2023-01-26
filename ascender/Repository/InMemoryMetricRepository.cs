@@ -19,8 +19,8 @@ class InMemoryMetricRepository : IMetricRepository
             Value = 0,
             Time = DateTime.Now
         };
-        _entries.Add(metric._name, new List<MetricEntry> {entry});
-        _metrics.Add(metric._name, metric);
+        _entries.Add(metric.Name, new List<MetricEntry> {entry});
+        _metrics.Add(metric.Name, metric);
     }
 
     public void MetricCommitted(string name, decimal value)
