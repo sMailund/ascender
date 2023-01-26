@@ -171,5 +171,28 @@ public class AcceptanceTests : IClassFixture<WebApplicationFactory<ascender.Prog
         var result2 = await metrics.ValidateEntry(metricName, 10.01m);
         Assert.False(result2);
     }
+    
+    [Fact]
+    public async Task RejectHigherValue()
+    {
+        var client = _factory.CreateClient();
+        var metrics = new MetricsDriver(client);
+
+        var metricName = AMetricName(Direction.Decrease);
+        
+        var dto = new CreateMetricDto
+        {
+            Name = metricName,
+            Direction = Direction.Decrease,
+            Window = 1
+        };
+        
+        await metrics.CreateMetric(dto);
+        
+        await metrics.CommitEntry(metricName, 5);
+        var result = await metrics.ValidateEntry(metricName, 8);
+
+        Assert.False(result);
+    }
 
 }

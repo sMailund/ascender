@@ -1,4 +1,5 @@
 using ascender.Dto;
+using ascender.Enum;
 using ascender.Repository;
 using Microsoft.AspNetCore.Mvc;
 
@@ -37,10 +38,13 @@ public class MetricController : ControllerBase
     [Route("{metricName}/validate")]
     public bool Validate(string metricName, [FromBody] EntryDto dto) // TODO useless dto
     {
+        var metric = _repo.GetMetric(metricName);
         var value = _repo.GetCutoff(metricName);
-        var max = _repo.GetMaximum(metricName);
+        
+        var max = metric.Max;
         var withInRange = !max.HasValue || dto.Value <= max;
+        var betterThanCutoff = metric.Direction == Direction.Increase ? value <= dto.Value : value >= dto.Value;
 
-        return value <= dto.Value && withInRange;
+        return betterThanCutoff && withInRange;
     }
 }
