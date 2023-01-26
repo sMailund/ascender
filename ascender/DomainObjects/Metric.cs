@@ -2,11 +2,16 @@ namespace ascender.DomainObjects;
 
 public abstract class Metric
 {
-    public string Name { get; }
+    public string Name { get; set;  }
     public  decimal Cutoff { get; set; }
-    public decimal? Max { get; }
-    public int Window { get; }
+    public decimal? Max { get; set;  }
+    public int Window { get; set;  }
 
+    public Metric()
+    {
+        
+    }
+    
     public Metric(string name, decimal? max, int window)
     {
         Name = name;
