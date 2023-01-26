@@ -20,11 +20,8 @@ public class Metric
     
     public bool Validate(decimal newValue)
     {
-        var cutoff = Cutoff;
-        
-        var max = Max;
-        var withInRange = !max.HasValue || newValue <= max;
-        var betterThanCutoff = Direction == Direction.Increase ? cutoff <= newValue : cutoff >= newValue;
+        var withInRange = !Max.HasValue || newValue <= Max;
+        var betterThanCutoff = Direction == Direction.Increase ? Cutoff <= newValue : Cutoff >= newValue;
 
         return betterThanCutoff && withInRange;
     }
