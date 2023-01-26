@@ -16,7 +16,7 @@ public class MetricController : ControllerBase
     }
 
     [HttpPost]
-    public string Post([FromBody] CreateMetricDto dto)
+    public string CreateMetric([FromBody] CreateMetricDto dto)
     {
         _metricService.CreateNewMetric(dto);
         return dto.Name;
