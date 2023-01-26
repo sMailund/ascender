@@ -24,15 +24,15 @@ public class MetricService
         _repo.CreateMetric(metric);
     }
     
-    public bool Validate(string metricName, EntryDto dto)
+    public bool Validate(string metricName, decimal value)
     {
         var metric = _repo.GetMetric(metricName);
-        return metric.Validate(dto.Value);
+        return metric.Validate(value);
     }
     
     public void Commit(string metricName, EntryDto dto) 
     {
-        if (!Validate(metricName, dto))
+        if (!Validate(metricName, dto.Value))
         {
             throw new ArgumentException();
         }

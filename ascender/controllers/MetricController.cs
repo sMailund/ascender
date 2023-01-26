@@ -40,6 +40,6 @@ public class MetricController : ControllerBase
     [Route("{metricName}/validate")]
     public bool Validate(string metricName, [FromBody] EntryDto dto) 
     {
-        return _metricService.Validate(metricName, dto);
+        return _metricService.Validate(metricName, dto.Value);
     }
 }
