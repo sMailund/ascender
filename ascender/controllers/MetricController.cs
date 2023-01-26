@@ -2,7 +2,7 @@ using ascender.Dto;
 using ascender.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ascender.controllers;
+namespace ascender.Controllers;
 
 [ApiController]
 [Route("[controller]")]
