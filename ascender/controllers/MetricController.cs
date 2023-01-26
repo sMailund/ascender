@@ -1,6 +1,7 @@
 using ascender.Dto;
 using ascender.Enum;
 using ascender.Repository;
+using ascender.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ascender.controllers;
@@ -10,10 +11,12 @@ namespace ascender.controllers;
 public class MetricController : ControllerBase
 {
     private readonly IMetricRepository _repo;
+    private readonly MetricService _metricService;
 
-    public MetricController(IMetricRepository repo)
+    public MetricController(IMetricRepository repo, MetricService metricService)
     {
         _repo = repo;
+        this._metricService = metricService;
     }
 
     [HttpPost]

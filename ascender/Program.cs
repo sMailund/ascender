@@ -1,4 +1,5 @@
 using ascender.Repository;
+using ascender.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,6 +11,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<IMetricRepository, InMemoryMetricRepository>();
+builder.Services.AddScoped<MetricService>();
 
 var app = builder.Build();
 
