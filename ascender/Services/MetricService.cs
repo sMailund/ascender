@@ -1,6 +1,4 @@
 using ascender.DomainObjects;
-using ascender.Dto;
-using ascender.Enum;
 using ascender.Repository;
 
 namespace ascender.Services;
@@ -14,17 +12,7 @@ public class MetricService
     {
         _repo = repo;
     }
-    
-    public void CreateNewMetric(CreateMetricDto dto)
-    {
-        Metric metric = dto.Direction == Direction.Increase
-            ? new IncreasingMetric(dto.Name, dto.Max, dto.Window)
-            : new DecreasingMetric(dto.Name, dto.Max, dto.Window);
-        
-        _repo.CreateMetric(metric);
-    }
 
-    
     public void CreateNewMetric(Metric metric)
     {
         
