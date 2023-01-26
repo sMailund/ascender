@@ -1,4 +1,5 @@
 using ascender.Dto;
+using ascender.Factory;
 using ascender.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,7 +19,12 @@ public class MetricController : ControllerBase
     [HttpPost]
     public string CreateMetric([FromBody] CreateMetricDto dto)
     {
-        _metricService.CreateNewMetric(dto);
+        var metric = new MetricFactory()
+            .Init(dto.Name, dto.Direction, dto.Window)
+            .WithMax(dto.Max)
+            .Build();
+        
+        _metricService.CreateNewMetric(metric);
         return dto.Name;
     }
 

@@ -7,21 +7,21 @@ public class MetricFactory
 {
     private Metric _metric;
 
-    private MetricFactory()
+    public MetricFactory()
     {
         
     }
 
-    public MetricFactory Init(string name, Direction direction, decimal cutoff, int window)
+    public MetricFactory Init(string name, Direction direction, int window)
     {
         _metric = direction == Direction.Increase ? new IncreasingMetric() : new DecreasingMetric();
         _metric.Name = name;
-        _metric.Cutoff = cutoff;
+        _metric.Cutoff = 0;
         _metric.Window = window;
         return this;
     }
 
-    public MetricFactory WithMax(decimal value)
+    public MetricFactory WithMax(decimal? value)
     {
         _metric.Max = value;
         return this;
