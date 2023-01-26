@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using ascender.Enum;
 
-namespace acceptanceTests.testData;
+namespace tests.testData;
 
 public static class TestData
 {

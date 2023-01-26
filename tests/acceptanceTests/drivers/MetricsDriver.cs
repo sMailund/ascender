@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using ascender.Dto;
 using Newtonsoft.Json;
 
-namespace acceptanceTests.acceptanceTests.drivers;
+namespace tests.acceptanceTests.drivers;
 
 public class MetricsDriver
 {
