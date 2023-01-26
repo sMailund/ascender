@@ -147,4 +147,29 @@ public class AcceptanceTests : IClassFixture<WebApplicationFactory<ascender.Prog
         Assert.False(result);
     }
 
+    [Fact]
+    public async Task ShouldRejectMetricsOutsideOfMaximum()
+    {
+        var client = _factory.CreateClient();
+        var metrics = new MetricsDriver(client);
+
+        var metricName = AMetricName(Direction.Increase);
+        
+        var dto = new CreateMetricDto
+        {
+            Name = metricName,
+            Direction = Direction.Increase,
+            Window = 3,
+            Max = 10
+        };
+        
+        await metrics.CreateMetric(dto);
+        
+        var result1 = await metrics.ValidateEntry(metricName, 10);
+        Assert.True(result1);
+       
+        var result2 = await metrics.ValidateEntry(metricName, 10.01m);
+        Assert.False(result2);
+    }
+
 }

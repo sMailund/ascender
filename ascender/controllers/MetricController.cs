@@ -38,6 +38,9 @@ public class MetricController : ControllerBase
     public bool Validate(string metricName, [FromBody] EntryDto dto) // TODO useless dto
     {
         var value = _repo.GetCutoff(metricName);
-        return value <= dto.Value;
+        var max = _repo.GetMaximum(metricName);
+        var withInRange = !max.HasValue || dto.Value <= max;
+
+        return value <= dto.Value && withInRange;
     }
 }

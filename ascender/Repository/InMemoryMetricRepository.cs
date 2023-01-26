@@ -42,4 +42,6 @@ class InMemoryMetricRepository : IMetricRepository
             .Select(it => it.Value)
             .Min();
     }
+
+    public decimal? GetMaximum(string name) => _metrics[name].Max;
 }
