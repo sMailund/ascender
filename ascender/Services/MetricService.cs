@@ -30,12 +30,12 @@ public class MetricService
         return metric.Validate(value);
     }
     
-    public void Commit(string metricName, EntryDto dto) 
+    public void Commit(string metricName, decimal value) 
     {
-        if (!Validate(metricName, dto.Value))
+        if (!Validate(metricName, value))
         {
             throw new ArgumentException();
         }
-        _repo.MetricCommitted(metricName, dto.Value);
+        _repo.MetricCommitted(metricName, value);
     }
 }

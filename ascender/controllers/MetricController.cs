@@ -28,7 +28,7 @@ public class MetricController : ControllerBase
     {
         try
         {
-            _metricService.Commit(metricName, dto);
+            _metricService.Commit(metricName, dto.Value);
         }
         catch (ArgumentException)
         {
