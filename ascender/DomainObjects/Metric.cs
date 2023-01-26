@@ -17,4 +17,15 @@ public class Metric
         Direction = direction;
         Window = window;
     }
+    
+    public bool Validate(decimal newValue)
+    {
+        var cutoff = Cutoff;
+        
+        var max = Max;
+        var withInRange = !max.HasValue || newValue <= max;
+        var betterThanCutoff = Direction == Direction.Increase ? cutoff <= newValue : cutoff >= newValue;
+
+        return betterThanCutoff && withInRange;
+    }
 }

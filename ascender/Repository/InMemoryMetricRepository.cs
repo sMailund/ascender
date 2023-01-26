@@ -35,7 +35,8 @@ class InMemoryMetricRepository : IMetricRepository
         var newList = new List<MetricEntry>();
         newList.AddRange(metricEntries);
         newList.Add(entry);
-        _entries[name] = newList;;
+        _entries[name] = newList;
+        _metrics[name].Cutoff = GetCutoff(name);
     }
 
     public decimal GetCutoff(string name)

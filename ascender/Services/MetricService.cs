@@ -24,13 +24,7 @@ public class MetricService
     public bool Validate(string metricName, EntryDto dto)
     {
         var metric = _repo.GetMetric(metricName);
-        var value = _repo.GetCutoff(metricName);
-        
-        var max = metric.Max;
-        var withInRange = !max.HasValue || dto.Value <= max;
-        var betterThanCutoff = metric.Direction == Direction.Increase ? value <= dto.Value : value >= dto.Value;
-
-        return betterThanCutoff && withInRange;
+        return metric.Validate(dto.Value);
     }
     
     public void Commit(string metricName, EntryDto dto) 
