@@ -25,4 +25,13 @@ public class MetricService
 
         return betterThanCutoff && withInRange;
     }
+    
+    public void Commit(string metricName, EntryDto dto) // TODO useless dto
+    {
+        if (!Validate(metricName, dto))
+        {
+            throw new ArgumentException();
+        }
+        _repo.MetricCommitted(metricName, dto.Value);
+    }
 }

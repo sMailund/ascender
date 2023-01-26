@@ -30,11 +30,14 @@ public class MetricController : ControllerBase
     [Route("{metricName}/commit")]
     public void Commit(string metricName, [FromBody] EntryDto dto) // TODO useless dto
     {
-        if (!Validate(metricName, dto))
+        try
+        {
+            _metricService.Commit(metricName, dto);
+        }
+        catch (ArgumentException)
         {
             BadRequest();
         }
-        _repo.MetricCommitted(metricName, dto.Value);
     }
     
     [HttpPost]
