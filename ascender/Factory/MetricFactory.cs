@@ -25,6 +25,12 @@ public class MetricFactory
         _metric.Max = value;
         return this;
     }
+    
+    public MetricFactory WithMin(decimal? value)
+    {
+        _metric.Minumum = value;
+        return this;
+    }
 
     public Metric Build()
     {
