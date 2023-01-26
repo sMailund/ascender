@@ -16,7 +16,6 @@ public class MetricFactory
     {
         _metric = direction == Direction.Increase ? new IncreasingMetric() : new DecreasingMetric();
         _metric.Name = name;
-        _metric.Cutoff = 0;
         _metric.Window = window;
         return this;
     }
