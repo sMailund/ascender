@@ -14,6 +14,11 @@ public class MetricService
         _repo = repo;
     }
     
+    public void CreateNewMetric(CreateMetricDto dto)
+    {
+        _repo.CreateMetric(dto);
+    }
+    
     public bool Validate(string metricName, EntryDto dto) // TODO useless dto
     {
         var metric = _repo.GetMetric(metricName);

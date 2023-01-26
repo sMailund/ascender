@@ -1,5 +1,4 @@
 using ascender.Dto;
-using ascender.Enum;
 using ascender.Repository;
 using ascender.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -22,7 +21,7 @@ public class MetricController : ControllerBase
     [HttpPost]
     public string Post([FromBody] CreateMetricDto dto)
     {
-        _repo.CreateMetric(dto);
+        _metricService.CreateNewMetric(dto);
         return dto.Name;
     }
 
