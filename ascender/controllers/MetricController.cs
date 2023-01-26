@@ -22,7 +22,7 @@ public class MetricController : ControllerBase
         var metric = new MetricFactory()
             .Init(dto.Name, dto.Direction, dto.Window)
             .WithMax(dto.Max)
-            .WithMin(dto.Min)
+            .WithMin(dto.Minimum)
             .Build();
         
         _metricService.CreateNewMetric(metric);

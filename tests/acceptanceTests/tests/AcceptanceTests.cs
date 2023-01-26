@@ -185,7 +185,7 @@ public class AcceptanceTests : IClassFixture<WebApplicationFactory<ascender.Prog
             Name = metricName,
             Direction = Direction.Increase,
             Window = 3,
-            Min = 10
+            Minimum = 10
         };
         
         await metrics.CreateMetric(dto);
