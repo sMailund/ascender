@@ -2,7 +2,7 @@ using ascender.Enum;
 
 namespace ascender.DomainObjects;
 
-public class Metric
+public abstract class Metric
 {
     public string Name { get; }
     public  decimal Cutoff { get; set; }
@@ -21,6 +21,7 @@ public class Metric
     public bool Validate(decimal newValue)
     {
         var withInRange = !Max.HasValue || newValue <= Max;
+        
         var betterThanCutoff = Direction == Direction.Increase ? Cutoff <= newValue : Cutoff >= newValue;
 
         return betterThanCutoff && withInRange;
