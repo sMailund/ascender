@@ -1,5 +1,4 @@
 using ascender.Dto;
-using ascender.Repository;
 using ascender.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,12 +8,10 @@ namespace ascender.controllers;
 [Route("[controller]")]
 public class MetricController : ControllerBase
 {
-    private readonly IMetricRepository _repo;
     private readonly MetricService _metricService;
 
-    public MetricController(IMetricRepository repo, MetricService metricService)
+    public MetricController(MetricService metricService)
     {
-        _repo = repo;
         _metricService = metricService;
     }
 
