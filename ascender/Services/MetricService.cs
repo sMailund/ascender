@@ -1,3 +1,4 @@
+using ascender.DomainObjects;
 using ascender.Dto;
 using ascender.Enum;
 using ascender.Repository;
@@ -16,7 +17,8 @@ public class MetricService
     
     public void CreateNewMetric(CreateMetricDto dto)
     {
-        _repo.CreateMetric(dto);
+        var metric = new Metric(dto.Name, dto.Max, dto.Direction, dto.Window);
+        _repo.CreateMetric(metric);
     }
     
     public bool Validate(string metricName, EntryDto dto)

@@ -6,17 +6,21 @@ namespace ascender.Repository;
 class InMemoryMetricRepository : IMetricRepository
 {
     private readonly Dictionary<string, List<MetricEntry>> _entries = new();
-    private readonly Dictionary<string, CreateMetricDto> _metrics = new();
+    private readonly Dictionary<string, Metric> _metrics = new();
 
     public void CreateMetric(CreateMetricDto dto)
+    {
+    }
+
+    public void CreateMetric(Metric metric)
     {
         var entry = new MetricEntry
         {
             Value = 0,
             Time = DateTime.Now
         };
-        _entries.Add(dto.Name, new List<MetricEntry> {entry});
-        _metrics.Add(dto.Name, dto);
+        _entries.Add(metric._name, new List<MetricEntry> {entry});
+        _metrics.Add(metric._name, metric);
     }
 
     public void MetricCommitted(string name, decimal value)
@@ -44,10 +48,5 @@ class InMemoryMetricRepository : IMetricRepository
             .Min();
     }
 
-    public Metric GetMetric(string name)
-    {
-        var createMetricDto = _metrics[name];
-        var metric = new Metric(createMetricDto.Name, GetCutoff(name), createMetricDto.Max, createMetricDto.Direction);
-        return metric;
-    }
+    public Metric GetMetric(string name) => _metrics[name];
 }
