@@ -24,4 +24,13 @@ public class ArchitecturalTests
         
         rule.Check(Architecture);
     }
+
+    [Fact]
+    public void NoCycles()
+    {
+        SliceRuleDefinition
+            .Slices().Matching("(*)")
+            .Should().BeFreeOfCycles()
+            .Check(Architecture);
+    }
 }
