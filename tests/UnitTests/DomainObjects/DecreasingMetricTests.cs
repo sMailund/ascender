@@ -10,7 +10,7 @@ public class DecreasingMetricTests
     [Fact]
     public void Validate_BelowThresholdAndAboveCutoff_ShouldAccept()
     {
-        var metric = new DecreasingMetric()
+        var metric = new DecreasingMetric
         {
             Cutoff = 10,
             Name = AMetricName(Direction.Decrease),
@@ -24,7 +24,7 @@ public class DecreasingMetricTests
     [Fact]
     public void Validate_BelowThresholdAndBelowCutoff_ShouldAccept()
     {
-        var metric = new DecreasingMetric()
+        var metric = new DecreasingMetric
         {
             Cutoff = 7,
             Name = AMetricName(Direction.Increase),

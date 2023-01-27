@@ -26,7 +26,7 @@ public class AcceptanceTests : IClassFixture<WebApplicationFactory<ascender.Prog
 
         var metricName = AMetricName(Direction.Increase);
         
-        var dto = new CreateMetricDto()
+        var dto = new CreateMetricDto
         {
             Name = metricName,
             Direction = Direction.Increase,
@@ -48,7 +48,7 @@ public class AcceptanceTests : IClassFixture<WebApplicationFactory<ascender.Prog
 
         var metricName = AMetricName(Direction.Increase);
         
-        var dto = new CreateMetricDto()
+        var dto = new CreateMetricDto
         {
             Name = metricName,
             Direction = Direction.Increase,
