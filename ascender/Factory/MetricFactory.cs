@@ -9,7 +9,6 @@ public class MetricFactory
 
     public MetricFactory()
     {
-        
     }
 
     public MetricFactory Init(string name, Direction direction, int window)
@@ -25,10 +24,16 @@ public class MetricFactory
         _metric.Max = value;
         return this;
     }
-    
+
     public MetricFactory WithMin(decimal? value)
     {
         _metric.Minimum = value;
+        return this;
+    }
+
+    public MetricFactory WithThreshold(decimal? value)
+    {
+        _metric.Threshold = value;
         return this;
     }
 
@@ -36,5 +41,4 @@ public class MetricFactory
     {
         return _metric;
     }
-
 }

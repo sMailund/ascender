@@ -9,4 +9,5 @@ public class CreateMetricDto
     public int Window { get; init; }
     public decimal? Max { get; init; }
     public decimal? Minimum { get; init; }
+    public decimal? Threshold { get; init; }
 }

@@ -23,6 +23,7 @@ public class MetricController : ControllerBase
             .Init(dto.Name, dto.Direction, dto.Window)
             .WithMax(dto.Max)
             .WithMin(dto.Minimum)
+            .WithThreshold(dto.Threshold)
             .Build();
         
         _metricService.CreateNewMetric(metric);

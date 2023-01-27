@@ -10,5 +10,5 @@ public class IncreasingMetric : Metric
     }
 
     protected override bool IsBetterThanCutoff(decimal newValue) => Cutoff <= newValue;
-    
+    protected override bool IsWithinThreshold(decimal newValue) => newValue >= Threshold;
 }
