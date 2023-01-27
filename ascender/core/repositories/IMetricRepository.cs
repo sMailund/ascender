@@ -1,7 +1,7 @@
-using ascender.DomainObjects;
+using ascender.core.domainEntities;
 using ascender.Dto;
 
-namespace ascender.Repository;
+namespace ascender.core.repositories;
 
 public interface IMetricRepository
 {

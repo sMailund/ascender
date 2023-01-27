@@ -1,7 +1,7 @@
-using ascender.DomainObjects;
-using ascender.Repository;
+using ascender.core.domainEntities;
+using ascender.core.repositories;
 
-namespace ascender.Services;
+namespace ascender.core.services;
 
 public class MetricService
 {

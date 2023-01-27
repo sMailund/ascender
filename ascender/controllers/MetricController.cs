@@ -1,9 +1,9 @@
+using ascender.core.services;
 using ascender.Dto;
 using ascender.Factory;
-using ascender.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ascender.Controllers;
+namespace ascender.controllers;
 
 [ApiController]
 [Route("api/v1/[controller]")]

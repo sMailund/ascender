@@ -1,4 +1,4 @@
-namespace ascender.DomainObjects;
+namespace ascender.core.domainEntities;
 
 public abstract class Metric
 {

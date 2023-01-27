@@ -1,4 +1,4 @@
-namespace ascender.Repository;
+namespace ascender.core.repositories;
 
 public class MetricEntry
 {

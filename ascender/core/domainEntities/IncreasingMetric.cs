@@ -1,6 +1,4 @@
-using System.Transactions;
-
-namespace ascender.DomainObjects;
+namespace ascender.core.domainEntities;
 
 public class IncreasingMetric : Metric
 {

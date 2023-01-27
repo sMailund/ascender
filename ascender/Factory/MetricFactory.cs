@@ -1,4 +1,4 @@
-using ascender.DomainObjects;
+using ascender.core.domainEntities;
 using ascender.Enum;
 
 namespace ascender.Factory;

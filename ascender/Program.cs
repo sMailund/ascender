@@ -1,5 +1,5 @@
-using ascender.Repository;
-using ascender.Services;
+using ascender.core.repositories;
+using ascender.core.services;
 
 var builder = WebApplication.CreateBuilder(args);
 
