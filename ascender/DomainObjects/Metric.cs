@@ -11,7 +11,12 @@ public abstract class Metric
 
     public bool Validate(decimal newValue)
     {
-        var withInRange = (!Max.HasValue || newValue <= Max) && (!Minimum.HasValue || newValue >= Minimum);
+        var withInRange = WithinRange(newValue);
+        if (!withInRange)
+        {
+            return false;
+        }
+        
 
         if (IsWithinThreshold(newValue))
         {
@@ -25,5 +30,11 @@ public abstract class Metric
 
     protected abstract bool IsBetterThanCutoff(decimal newValue);
     protected abstract bool IsWithinThreshold(decimal newValue);
+
+    private bool WithinRange(decimal newValue)
+    {
+        
+        return (!Max.HasValue || newValue <= Max) && (!Minimum.HasValue || newValue >= Minimum);
+    }
 
 }

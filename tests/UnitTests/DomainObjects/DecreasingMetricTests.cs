@@ -34,4 +34,19 @@ public class DecreasingMetricTests
         var result = metric.Validate(7);
         Assert.True(result);
     }
+    
+    [Fact]
+    public void Validate_BelowThresholdAndBelowCutoffButBelowMinimum_ShouldReject()
+    {
+        var metric = new DecreasingMetric
+        {
+            Cutoff = 10,
+            Name = AMetricName(Direction.Decrease),
+            Threshold = 10,
+            Minimum = 5
+        };
+
+        var result = metric.Validate(4);
+        Assert.False(result);
+    }
 }
