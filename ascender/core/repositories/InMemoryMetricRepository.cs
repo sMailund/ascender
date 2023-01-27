@@ -1,5 +1,4 @@
 using ascender.core.domainEntities;
-using ascender.Dto;
 
 namespace ascender.core.repositories;
 
@@ -7,10 +6,6 @@ class InMemoryMetricRepository : IMetricRepository
 {
     private readonly Dictionary<string, List<MetricEntry>> _entries = new();
     private readonly Dictionary<string, Metric> _metrics = new();
-
-    public void CreateMetric(CreateMetricDto dto)
-    {
-    }
 
     public void CreateMetric(Metric metric)
     {
