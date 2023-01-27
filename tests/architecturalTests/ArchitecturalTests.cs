@@ -16,7 +16,7 @@ public class ArchitecturalTests
         new ArchLoader().LoadAssemblies(System.Reflection.Assembly.Load("ascender")).Build();
     
     [Fact]
-    public void ControllersShouldAccesRepositoriesThroughServices()
+    public void ControllersShouldAccessRepositoriesThroughServices()
     {
         var rule = Classes().That().ResideInNamespace("ascender.Controllers")
             .Should().NotDependOnAnyTypesThat().ResideInNamespace("ascender.Repository")
