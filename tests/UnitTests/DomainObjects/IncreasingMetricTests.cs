@@ -1,9 +1,9 @@
 using ascender.DomainObjects;
 using ascender.Enum;
 using Xunit;
-using static tests.testData.TestData;
+using static Tests.testData.TestData;
 
-namespace tests.UnitTests.DomainObjects;
+namespace Tests.UnitTests.DomainObjects;
 
 public class IncreasingMetricTests
 {
