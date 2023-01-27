@@ -219,5 +219,63 @@ public class AcceptanceTests : IClassFixture<WebApplicationFactory<ascender.Prog
 
         Assert.False(result);
     }
+    
+    [Fact]
+    public async Task AcceptLowerValueAboveThreshold()
+    {
+        var client = _factory.CreateClient();
+        var metrics = new MetricsDriver(client);
+
+        var metricName = AMetricName(Direction.Increase);
+        
+        var dto = new CreateMetricDto
+        {
+            Name = metricName,
+            Direction = Direction.Increase,
+            Window = 3,
+            Threshold = 100
+        };
+        
+        await metrics.CreateMetric(dto);
+        
+        await metrics.CommitEntry(metricName, 105);
+        await metrics.CommitEntry(metricName, 108);
+        await metrics.CommitEntry(metricName, 110);
+        
+        var result1 = await metrics.ValidateEntry(metricName, 100);
+        Assert.True(result1);
+        
+        var result2 = await metrics.ValidateEntry(metricName, 99);
+        Assert.False(result2);
+    }
+    
+    [Fact]
+    public async Task AcceptLowerValueBelowThreshold()
+    {
+        var client = _factory.CreateClient();
+        var metrics = new MetricsDriver(client);
+
+        var metricName = AMetricName(Direction.Decrease);
+        
+        var dto = new CreateMetricDto
+        {
+            Name = metricName,
+            Direction = Direction.Decrease,
+            Window = 3,
+            Threshold = 20
+        };
+        
+        await metrics.CreateMetric(dto);
+        
+        await metrics.CommitEntry(metricName, 15);
+        await metrics.CommitEntry(metricName, 12);
+        await metrics.CommitEntry(metricName, 10);
+        
+        var result1 = await metrics.ValidateEntry(metricName, 20);
+        Assert.True(result1);
+        
+        var result2 = await metrics.ValidateEntry(metricName, 21);
+        Assert.False(result2);
+    }
 
 }
