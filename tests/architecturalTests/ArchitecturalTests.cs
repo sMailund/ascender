@@ -1,11 +1,10 @@
 using ArchUnitNET.Domain;
-using ArchUnitNET.Loader;
-using ArchUnitNET.Fluent;
 using ArchUnitNET.Fluent.Slices;
+using ArchUnitNET.Loader;
 using ArchUnitNET.xUnit;
-using ascender.Services;
 using Xunit;
 using static ArchUnitNET.Fluent.ArchRuleDefinition;
+using Assembly = System.Reflection.Assembly;
 
 namespace tests.architecturalTests;
 
@@ -13,7 +12,7 @@ public class ArchitecturalTests
 {
     
     private static readonly Architecture Architecture =
-        new ArchLoader().LoadAssemblies(System.Reflection.Assembly.Load("ascender")).Build();
+        new ArchLoader().LoadAssemblies(Assembly.Load("ascender")).Build();
     
     [Fact]
     public void ControllersShouldAccessRepositoriesThroughServices()
