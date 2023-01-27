@@ -16,12 +16,7 @@ public abstract class Metric
             return false;
         }
 
-        if (IsWithinThreshold(newValue))
-        {
-            return true;
-        }
-
-        return IsBetterThanCutoff(newValue);
+        return IsWithinThreshold(newValue) || IsBetterThanCutoff(newValue);
     }
 
     protected abstract bool IsBetterThanCutoff(decimal newValue);
