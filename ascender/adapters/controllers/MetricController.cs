@@ -3,7 +3,7 @@ using ascender.Dto;
 using ascender.Factory;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ascender.controllers;
+namespace ascender.adapters.controllers;
 
 [ApiController]
 [Route("api/v1/[controller]")]
