@@ -1,21 +1,24 @@
 using System.Threading.Tasks;
+using ascender;
 using ascender.Dto;
 using ascender.Enum;
 using Microsoft.AspNetCore.Mvc.Testing;
 using tests.acceptanceTests.drivers;
 using Xunit;
+using Xunit.Abstractions;
 using static tests.testData.TestData;
 
 namespace tests.acceptanceTests.tests;
 
-public class AcceptanceTests : IClassFixture<WebApplicationFactory<ascender.Program>>
+public class AcceptanceTests 
 {
     
-    private readonly WebApplicationFactory<ascender.Program> _factory;
+    private readonly WebApplicationFactory<Program> _factory;
 
-    public AcceptanceTests(WebApplicationFactory<ascender.Program> factory)
+
+    public AcceptanceTests(ITestOutputHelper testOutputHelper)
     {
-        _factory = factory;
+        _factory = new CustomWebApplicationFactory<Program>(testOutputHelper);
     }
 
     [Fact]
