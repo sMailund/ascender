@@ -1,6 +1,7 @@
 using ascender.core.services;
 using ascender.Dto;
 using ascender.Factory;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ascender.adapters.controllers;
@@ -17,6 +18,7 @@ public class MetricController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize]
     public string CreateMetric([FromBody] CreateMetricDto dto)
     {
         var metric = new MetricFactory()
@@ -32,6 +34,7 @@ public class MetricController : ControllerBase
 
     [HttpPost]
     [Route("{metricName}/commit")]
+    [Authorize]
     public void Commit(string metricName, [FromBody] EntryDto dto) 
     {
         try
@@ -46,6 +49,7 @@ public class MetricController : ControllerBase
     
     [HttpPost]
     [Route("{metricName}/validate")]
+    [Authorize]
     public bool Validate(string metricName, [FromBody] EntryDto dto) 
     {
         return _metricService.Validate(metricName, dto.Value);
