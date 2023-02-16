@@ -40,7 +40,12 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapControllers();
+var endpointBuilder = app.MapControllers();
+
+if (app.Environment.IsDevelopment())
+{
+    endpointBuilder.AllowAnonymous();
+}
 
 app.Run();
 
